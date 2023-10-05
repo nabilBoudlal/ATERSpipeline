@@ -26,6 +26,7 @@ def recognize_text(image_path):
 
 
 def process_text_in_directory(base_folder, recognize_text_function):
+    global output_file, results
     crafted_folder = base_folder
     subdirectories = [name for name in os.listdir(crafted_folder) if os.path.isdir(os.path.join(crafted_folder, name))]
 
@@ -50,8 +51,9 @@ def process_text_in_directory(base_folder, recognize_text_function):
             elif recognize_text_function == "":
                 results += recognize_text(image_path) + " "
 
-        with open(output_file, 'w') as file:
-            file.write(correct_line(results))
+    with open(output_file, 'w') as file:
+        print(results)
+        file.write(correct_line(results))
 
 
 def text_recognition_auto():
